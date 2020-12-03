@@ -34,8 +34,9 @@ public class Responder
     {
         responseMap = new HashMap<>();
         defaultResponses = new ArrayList<String>();
-        fillDefaultResponses();
         fillResponseMap();
+        fillDefaultResponses();
+        
         randomGenerator = new Random();
     }
 
@@ -168,7 +169,7 @@ public class Responder
         try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
             String response = reader.readLine();
             while(response != null) {
-                System.out.println(response ); 
+                System.out.println(response); 
                 defaultResponses.add(response);
                 response = reader.readLine();
             }
