@@ -9,7 +9,7 @@ import java.util.*;
  * Input is presented to the responder as a set of words, and based on those
  * words the responder will generate a String that represents the response.
  *
- * Internally, the reponder uses a HashMap to associate words with response
+ * Internally, the responder uses a HashMap to associate words with response
  * strings and a list of default responses. If any of the input words is found
  * in the HashMap, the corresponding response is returned. If none of the input
  * words is recognized, one of the default responses is randomly chosen.
@@ -34,8 +34,8 @@ public class Responder
     {
         responseMap = new HashMap<>();
         defaultResponses = new ArrayList<String>();
-        fillResponseMap();
         fillDefaultResponses();
+        fillResponseMap();
         randomGenerator = new Random();
     }
 
@@ -54,7 +54,7 @@ public class Responder
         try
         {
             reader= new BufferedReader(new FileReader(
-            "responses.txt"));
+            "default.txt"));
             Iterator<String> it= words.iterator();
             while(it.hasNext())
             {
@@ -81,11 +81,11 @@ public class Responder
             }
             catch(FileNotFoundException e)
             {
-                System.err.println("Cant open"+FILE_OF_DEFAULT_RESPONSES);
+                System.err.println("Cant open hat"+FILE_OF_DEFAULT_RESPONSES);
             }
             catch(IOException e)
             {
-                System.err.println(" A problem occured reading"+
+                System.err.println(" A problem occured reading "+
                 FILE_OF_DEFAULT_RESPONSES);
             }
             
@@ -168,6 +168,7 @@ public class Responder
         try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
             String response = reader.readLine();
             while(response != null) {
+                System.out.println(response ); 
                 defaultResponses.add(response);
                 response = reader.readLine();
             }
